@@ -14,6 +14,3 @@ y_data <- rbind(y_train, y_test)
 subject_train <- read.table("./UCI HAR Dataset-2/train/subject_train.txt", header=FALSE)
 subject_test <- read.table("./UCI HAR Dataset-2/test/subject_test.txt", header=FALSE)
 subject_data <- rbind(subject_train, subject_test)
-
-2+2
-#TESTING
