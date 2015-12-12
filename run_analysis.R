@@ -16,3 +16,4 @@ subject_test <- read.table("./UCI HAR Dataset-2/test/subject_test.txt", header=F
 subject_data <- rbind(subject_train, subject_test)
 
 # to be continued ...
+2+2
