@@ -1,0 +1,55 @@
+---
+title: "CodeBook"
+author: "William W. Chiang"
+date: "December 20, 2015"
+output: html_document
+---
+
+The UCI HAR Dataset contains smartphone accelerometer and gyroscope data captured by the Samsung Galaxy S II. Thirty volunteers were recruited in the study and were instructed to wear the device at their waist and perform the following six activities: 
+
+```{Activity listing}
+1. Walking
+2. Walking upstairs
+3. Walking downstairs
+4. Sitting
+5. Standing
+6. Laying
+```
+
+The goal of this project is to create a single tidy dataset from multiple file sources listed below:
+
+```{File sources}
+activity_labels.txt = assigns a numeric value 1 through 6 for each activity
+
+features.txt = described by the "features_info.txt" to be comprised of 561 signals quantifying linear acceleration, angular velocity, and jerk for each activity performed; the tidy dataset will only include the averages and standard deviations of signals measured
+
+test folder = contains post-training results which comprises 30% of the total dataset, or 2947 observations; the "run_analysis.R script"" will combine data from "subject_test.txt", "X_test.txt", and "y_test.txt" thereby "linking" each subject to the activity that was performed and the 561 sensor signal readings
+
+train folder = similar to the test folder above but this folder contains training results (before the test) and comprises 70% of the total dataset
+```
+
+Writing the R script initially requires loading of the dplyr package along with the datasets in text files as described previously. Significant data transformation was accomplished at the point where subject, training, and test data sets were merged into one dataset:
+
+```{r, echo=FALSE}
+merged_data <- cbind(subject_data, y_data_labeled, x_data)
+```
+
+Result of the "merged_data" was a large dataset, 10299 observations by 564 variables, which needed additional tidy work. Subject, activity type (with numeric identification, e.g. 1 through 6), and sensor signal recordings were organized into columns. Because the tidy dataset should include columns listing subject ID, activity, and averages and standard deviations, the rest of the columns will be excluded. It was found that some measurements were duplicated which will be excluded as well. The following code selects colums containing mean and standard deviation for each measurement.
+
+```{r}
+merged_data_removedDuplicateColumns <- merged_data[ , !duplicated(colnames(merged_data))]
+merged_data_filteredOut <- merged_data_removedDuplicateColumns %>%
+  select(matches("subject|activity_type|mean()|std()")) %>%
+  select(-matches("meanFreq|AccMean|JerkMean|gravityMean"))
+```
+
+Finally, tidy_data was created from the following code that averages each variable for each activity and each subject, and a resulting text file was generated through the write.table function.
+
+```{r}
+tidy_data <- merged_data_filteredOut %>%
+  group_by(subject, activity_type) %>%
+  summarise_each(funs(mean))
+
+write.table(tidy_data, file="tidy_data.txt", row.names = FALSE)
+```
+
