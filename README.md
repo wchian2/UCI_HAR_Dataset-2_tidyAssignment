@@ -1,4 +1,13 @@
 # UCI_HAR_Dataset-2_tidyAssignment
-First SlideRule assignment!
+Author: William W. Chiang 2015
 
-Once I figured how to work with Git and GitHub, I am on my way with the Data Science Intro coursework!!
+Course: Springboard Data Wrangling Assignment
+
+Comment: My first coding assignment!
+
+
+# SETUP
+Before executing the run_analysis.R script, download the UCI HAR Dataset-2 which contains text files of disparate data which will be combined into a tidy dataset once the script has been executed.
+
+# OVERVIEW
+Please refer to the CodeBook R Markdown file for a description of the raw data and my thought processes behind writing the script tidying the data.
