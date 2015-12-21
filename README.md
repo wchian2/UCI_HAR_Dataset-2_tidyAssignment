@@ -1,5 +1,6 @@
 # UCI_HAR_Dataset-2_tidyAssignment
 Author: William W. Chiang 2015
+
 Course: Springboard Data Wrangling Assignment
 
 First SlideRule assignment!
