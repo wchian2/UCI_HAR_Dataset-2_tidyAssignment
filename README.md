@@ -3,7 +3,7 @@ Author: William W. Chiang 2015
 
 Course: Springboard Data Wrangling Assignment
 
-First SlideRule assignment!
+Comment: My First coding assignment!
 
 
 # SETUP
