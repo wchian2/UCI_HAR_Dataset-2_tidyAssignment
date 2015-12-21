@@ -3,7 +3,7 @@ Author: William W. Chiang 2015
 
 Course: Springboard Data Wrangling Assignment
 
-Comment: My First coding assignment!
+Comment: My first coding assignment!
 
 
 # SETUP
